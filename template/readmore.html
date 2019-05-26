@@ -1,0 +1,26 @@
+{% extends 'master/master.html' %}
+
+{% block title %}Company Dashboard {% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="col-md-4">
+    {% include 'partials/company_nav.html' %}
+  </div>
+
+  <div class="col-md-8">
+
+    <div class="row" style="background-color:#fffdd0; margin-top:5px;">
+      <h3>{{readmore.title}}</h3>
+      <p>{% autoescape off %}{{readmore.description}}{% endautoescape %}</p>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+{% endblock %}

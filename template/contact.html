@@ -1,0 +1,51 @@
+{% extends 'master/master.html'%}
+
+{% load widget_tweaks %}
+{% block content %}
+
+
+<!-- Page Heading -->
+  <section class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Contacts</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Heading / End -->
+
+  <!-- Page Content -->
+  <section class="page-content">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="spacer-lg visible-sm visible-xs"></div>
+          <div class="box">
+            <h3>Contact Us</h3>
+
+              {% if msg %}
+
+              <p class="alert alert-danger"> {{msg}}</p>
+              {% endif %}
+    <form action="{% url 'contactus' %}" method="POST" role="form">
+      <div class="form-group">
+        {% for f in form %}
+        <label>{{f.label_tag}} <span class="required">*</span></label>
+          {{f|add_class:'form-control'}}
+      </div>
+      {% csrf_token %}
+{% endfor %}
+      <button type="submit" class="btn btn-primary">submit</button>
+    </form>
+  </div>
+</div>
+</div>
+
+</div>
+  </section>
+  <!-- Page Content / End -->
+{% endblock %}

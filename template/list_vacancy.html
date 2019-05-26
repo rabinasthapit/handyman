@@ -1,0 +1,28 @@
+{% extends 'master/master.html' %}
+
+{% block title %}view vacancy {% endblock %}
+
+
+{% block content %}
+<div class="container" style="color:black;">
+  <div class="col-md-4">
+    {% include 'partials/company_nav.html' %}
+  </div>
+
+
+  <div class="col-md-8">
+
+    <h3>List of Vacancy</h3>
+    {% for v in vacancy %}
+    <div class="row" style="background-color:#fffdd0; margin-top:5px;">
+      <h3>{{v.title}}</h3>
+      <p>{% autoescape off %}{{v.description|truncatewords:20}}{% endautoescape %}</p>
+      <p><a href="{% url 'readmore_vacancy' v.id %}"  class="btn btn-info" style="background-color:#B5A557;">Read More</a> <a href="{% url 'update_vacancy' v.id %}" class="btn btn-primary" style="background-color:#819E94";>Update</a> <a class="btn btn-danger" href="{% url 'delete_vacancy' v.id %}" style="background-color:#B5A557;">Delete</a></p>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+
+{% endblock %}

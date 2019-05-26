@@ -1,0 +1,28 @@
+{% extends 'master/master.html' %}
+
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="col-md-4">
+    {% include 'partials/user_nav.html' %}
+  </div>
+
+  <div class="col-md-8">
+    <div class="row">
+
+      <form method="post" enctype="multipart/form-data">
+        
+        {{form.as_p}}
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-primary">SAVE  </button>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

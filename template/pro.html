@@ -1,0 +1,38 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+
+<div class="spacer-xl"></div>
+
+<!-- Listings -->
+<div class="title-bordered">
+  <h2>Our Professionals <small>Latest added</small></h2>
+</div>
+<div class="job_listings">
+  <ul class="job_listings">
+    {% for v in vacancy %}
+    <li class="job_listing">
+      <a href="#">
+        <div class="job_img">
+          <img src="images/samples/person1.jpg" alt="" class="company_logo">
+        </div>
+        <div class="position">
+          <h3>{{v.title}}</h3>
+          <div class="company">
+            <strong>{% autoescape off %}{{v.description}} {% endautoescape %}</strong>
+          </div>
+        </div>
+        <div class="location">
+          <i class="fa fa-location-arrow"></i>
+          {{v.company}}
+        </div>
+        <button class="btn btn-primary" style=" float:right;"> APPLY NOW </button>
+
+      </a>
+    </li>
+     {% endfor %}
+  </ul>
+</div>
+
+<div class="spacer"></div>
+ {% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'master/master.html' %}
+{% load widget_tweaks %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="col-md-4">
+    {% include 'partials/user_nav.html' %}
+  </div>
+
+  <div class="col-md-8">
+    <div class="row">
+
+      <form  action="{% url 'user_cv' %}" method="post" enctype="multipart/form-data">
+        {% for f in form %}
+        <div class="form-group">
+            <label>{{f.label_tag}} <span class="required">*</span></label>
+            {{f|add_class:'form-control'}}
+            <!-- form control is automatically generated table using widget tweaks -->
+        </div>
+          {% endfor %}
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-primary">SAVE  </button>
+      </form>
+
+    </div>
+
+    <table class="table">
+      <th>NAME</th>
+      <th>CV file</th>
+      <th>Action</th>
+
+      <tbody>
+        {% for c in cv %}
+        <tr>
+        <td>{{ c.name}}</td>
+        <td> <a href="{{MEDIA_URL}}{{c.cv_file.url}}" target="_blank"> {{ c.cv_file}}</a> </td>
+        <td> <a href="{% url 'user_cv_update' c.id %}">update</a>|<a href="{% url 'user_cv_delete' c.id %}">delete</a> </td>
+      </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+
+
+{% endblock %}

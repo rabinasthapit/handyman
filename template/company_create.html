@@ -1,0 +1,36 @@
+{% extends 'master/master.html'%}
+{% load widget_tweaks %}
+{% block title%} Create Company Account {% endblock %}
+{% block content %}
+<div class="row">
+<br/>
+<div class="container">
+<div class="col-md-6 col-md-offset-3">
+  {% if msg %}
+
+  <p class="alert alert-danger"> {{msg}}</p>
+  {% endif %}
+<form  action="{% url 'company_create' %}" method="post">
+  {% for f in form %}
+  <div class="form-group">
+    <label>{{f.label_tag}} <span class="required">*</span></label>
+      {{f|add_class:'form-control'}}
+
+      <ul style="color:red;">
+        {% for error in f.errors %}
+        <li>{{ error}}</li>
+        {% endfor %}
+      </ul>
+   </div>
+  {% endfor %}
+  {% csrf_token %}
+  <button type="submit" class="btn btn-primary" style="float:right;">SUBMIT</button>
+  </form>
+  <br/>
+    </div>
+  </div>
+</div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'master/master.html' %}
+{% load widget_tweaks %}
+{% block title %} user update {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="col-md-4">
+    {% include 'partials/user_nav.html' %}
+  </div>
+
+  <div class="col-md-8">
+    <form  method="post">
+      {% for f in form %}
+      <div class="form-group">
+          <label>{{f.label_tag}} <span class="required">*</span></label>
+          {{f|add_class:'form-control'}}
+          <!-- form control is automatically generated table using widget tweaks -->
+      </div>
+        {% endfor %}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">ADD</button>
+    </form>
+
+    <table class="table">
+      <th>Experience</th>
+      <th>action</th>
+
+      <tbody>
+        {% for e in experience %}
+        <tr>
+          <td>{{e.company}}</td>
+          <td> <a href="{% url 'user_experience_delete' e.id %}">Delete</a></td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

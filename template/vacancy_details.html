@@ -1,0 +1,67 @@
+{% extends 'master/master.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<!-- Page Heading -->
+    <section class="page-heading">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>{{vacancy.title}}</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Page Heading / End -->
+
+    <!-- Page Content -->
+    <section class="page-content">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-10">
+            <p>{% autoescape off %}{{vacancy.description}}{% endautoescape %}</p>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Apply Now
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  <form method="post" action="{% url 'apply' %}">
+
+                    <div class="input-group">
+                      <h4>Cover letter</h4>
+                      <textarea class="form-control" name="cover_letter" rows="10" cols="150"></textarea>
+                    </div>
+                    <input type="hidden" name="vacancy_id" value="{{vacancy.id}}">
+                    <br/>
+                    <h4>Choose your CV</h4>
+                    <select class="form-control" name="cv_id">
+                      {% for c in cv %}
+                      <option value="{{c.id}}">{{c.name}}</option>
+                      {% endfor %}
+                    </select>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary" >Save</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </section>
+    <!-- Page Content / End -->
+
+{% endblock %}

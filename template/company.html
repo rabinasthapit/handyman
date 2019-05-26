@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>COMPANY PROFILE</title>
+  </head>
+  <body>
+    THIS IS COMPANY PROFILE
+
+    {% for c in company %}
+
+    <h1>{{c.companyname}}</h1>
+    <h2>{{c.address}}</h2>
+    <h3>{{c.portfolio}}</h3>
+    <h5>{{c.contact}}</h5>
+
+
+    {% endfor %}
+
+    {% for c in vacancy %}
+
+    <h1>{{c.title}}</h1>
+    {% autoescape off %} {{c.description}} {% endautoescape %}
+    <h3>{{c.tag}}</h3>
+
+    {% endfor %}
+  </body>
+</html>

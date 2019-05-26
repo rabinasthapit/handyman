@@ -1,0 +1,15 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+
+<div class="row" style="margin-top:15%; margin-bottom:15%;">
+  <div class="col-md-6 col-md-offset-4">
+    <h2 style="margin-left:7%; ">Who are you ?</h2>
+    <a class="btn btn-primary" href="{% url 'employee_create' %}">I am Employee</a>
+    <a class="btn btn-primary" href="{% url 'company_create' %}">I am Employer</a>
+
+  </div>
+</div>
+
+
+{% endblock %}

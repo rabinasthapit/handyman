@@ -1,0 +1,22 @@
+{% extends 'master/master.html' %}
+
+{% block title %} add vacancy {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="col-md-4">
+    {% include 'partials/company_nav.html' %}
+  </div>
+
+  <div class="col-md-8">
+    <form  method="post" method="{% url 'add_vacancy' %}">
+      {{ form.as_p}}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Publish</button>
+    </form>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

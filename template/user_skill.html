@@ -1,0 +1,37 @@
+{% extends 'master/master.html' %}
+
+{% block title %} user skill {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="col-md-4">
+    {% include 'partials/user_nav.html' %}
+  </div>
+
+  <div class="col-md-8">
+    <form  method="post" action="{% url 'user_skill' %}">
+      {{ form.as_p}}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">ADD</button>
+    </form>
+
+    <table class="table">
+      <th>My Skills</th>
+      <th>Action</th>
+
+      <tbody>
+        {% for s in skill %}
+        <tr>
+          <td>{{ s.skill }}</td>
+          <td><a href="{% url 'user_skill_delete' s.id %}">Delete</a></td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+
+
+{% endblock %}
